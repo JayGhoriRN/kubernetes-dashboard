@@ -73,16 +73,16 @@ export default function Header({
         </div>
       </div>
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <div className="flex items-center text-sm mt-2 ml-2 p-2 border border-solid border-gray-400 w-full">
-          <Link to="/" className="text-blue-500 hover:text-gray-700">
+        <div className="flex items-center text-sm mt-1 ml-2 p-2 border border-solid border-gray-300 w-full rounded-sm">
+          <Link to="/" className="text-blue-500 hover:text-blue-700 text-xs">
             Home
           </Link>
           {breadcrumbs.map((item, i) => (
-            <div key={i} className="flex items-center justify-center">
-              <span className="mx-2 text-blue-400 text-2xl">›</span>
+            <div key={i} className="flex items-center">
+              <span className="mx-1 text-gray-400 text-lg">›</span>
               <Link
                 to={item.path}
-                className="text-blue-500 hover:text-gray-700"
+                className="text-blue-500 hover:text-blue-700 text-xs"
               >
                 {item.label}
               </Link>

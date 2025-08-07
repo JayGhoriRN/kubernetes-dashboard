@@ -113,7 +113,7 @@ export default function ClusterDetails() {
         />
         <main className="p-4">
           <div className="mb-6">
-            <h1 className="text-2xl font-medium text-gray-800">
+            <h1 className="text-xl font-medium text-gray-800">
               Intellectual-Mongoose
             </h1>
           </div>
