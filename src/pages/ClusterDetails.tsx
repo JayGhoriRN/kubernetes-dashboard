@@ -36,7 +36,17 @@ export default function ClusterDetails() {
     {
       title: "Cluster Health",
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
         </svg>
       ),
@@ -44,7 +54,17 @@ export default function ClusterDetails() {
     {
       title: "Kraft Metrics",
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M3 3v18h18"></path>
           <path d="m19 9-5 5-4-4-3 3"></path>
         </svg>
@@ -53,15 +73,23 @@ export default function ClusterDetails() {
     {
       title: "Strimzi Kafka Logs",
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
           <polyline points="14 2 14 8 20 8"></polyline>
         </svg>
       ),
     },
   ];
-
-  const endpoints: Array<{type: string; address: string; dnsRecord: string;}> = [];
 
   const billingData = [
     { month: "Jan", amount: 0.3 },
@@ -76,49 +104,74 @@ export default function ClusterDetails() {
     <div className="min-h-screen bg-gray-50">
       <Sidebar />
       <div className="pl-14">
-        <Header 
-          title="Intellectual-Mongoose" 
+        <Header
+          title="Intellectual-Mongoose"
           breadcrumbs={[
             { label: "Clusters", path: "/clusters" },
             { label: "Intellectual-Mongoose", path: `/clusters/${id}` },
-          ]} 
+          ]}
         />
         <main className="p-4">
           <div className="mb-6">
-            <h1 className="text-2xl font-medium text-gray-800">Intellectual-Mongoose</h1>
+            <h1 className="text-2xl font-medium text-gray-800">
+              Intellectual-Mongoose
+            </h1>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <ClusterInfo cluster={clusterData} />
-             <Card className="col-span-2">
+            <Card className="col-span-2">
               <CardHeader>
-                    <CardTitle className="text-md font-medium mb-3 flex items-center text-gray-700">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-500">
-                        <path d="M3 3v18h18"></path>
-                        <path d="m19 9-5 5-4-4-3 3"></path>
-                      </svg>
-                      Performance
-                    </CardTitle>
+                <CardTitle className="text-md font-medium mb-3 flex items-center text-gray-700">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="mr-2 text-blue-500"
+                  >
+                    <path d="M3 3v18h18"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                  </svg>
+                  Performance
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      <PerformanceGauge title="Production" value="0 B/s" maxValue={100} />
-                      <PerformanceGauge title="Consumption" value="0 B/s" maxValue={100} />
-                      <PerformanceGauge title="Partitions" value="50" maxValue={100} />
-                    </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <PerformanceGauge
+                    title="Production"
+                    value="0 B/s"
+                    maxValue={100}
+                  />
+                  <PerformanceGauge
+                    title="Consumption"
+                    value="0 B/s"
+                    maxValue={100}
+                  />
+                  <PerformanceGauge
+                    title="Partitions"
+                    value="50"
+                    maxValue={100}
+                  />
+                </div>
               </CardContent>
-             </Card>
+            </Card>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <KubernetesInfo kubernetes={kubernetesData} />
             <DashboardLinks links={dashboardLinks} />
             <Actions />
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <BillingChart data={billingData} />
-            <EndpointsTable endpoints={endpoints} />
+            <EndpointsTable />
           </div>
         </main>
       </div>
