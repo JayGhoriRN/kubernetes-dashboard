@@ -8,6 +8,7 @@ import DashboardLinks from "@/components/dashboard/DashboardLinks";
 import Actions from "@/components/dashboard/Actions";
 import EndpointsTable from "@/components/dashboard/EndpointsTable";
 import BillingChart from "@/components/dashboard/BillingChart";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function ClusterDetails() {
   const { id } = useParams<{ id: string }>();
@@ -89,31 +90,33 @@ export default function ClusterDetails() {
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <ClusterInfo cluster={clusterData} />
-            <div className="col-span-2">
-              <div>
-                <h2 className="text-md font-medium mb-3 flex items-center text-gray-700">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-500">
-                    <path d="M3 3v18h18"></path>
-                    <path d="m19 9-5 5-4-4-3 3"></path>
-                  </svg>
-                  Performance
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  <PerformanceGauge title="Production" value="0 B/s" maxValue={100} />
-                  <PerformanceGauge title="Consumption" value="0 B/s" maxValue={100} />
-                  <PerformanceGauge title="Partitions" value="50" maxValue={100} />
-                </div>
-              </div>
-            </div>
+             <Card className="col-span-2">
+              <CardHeader>
+                    <CardTitle className="text-md font-medium mb-3 flex items-center text-gray-700">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-500">
+                        <path d="M3 3v18h18"></path>
+                        <path d="m19 9-5 5-4-4-3 3"></path>
+                      </svg>
+                      Performance
+                    </CardTitle>
+              </CardHeader>
+              <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <PerformanceGauge title="Production" value="0 B/s" maxValue={100} />
+                      <PerformanceGauge title="Consumption" value="0 B/s" maxValue={100} />
+                      <PerformanceGauge title="Partitions" value="50" maxValue={100} />
+                    </div>
+              </CardContent>
+             </Card>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <KubernetesInfo kubernetes={kubernetesData} />
             <DashboardLinks links={dashboardLinks} />
             <Actions />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
             <BillingChart data={billingData} />
             <EndpointsTable endpoints={endpoints} />
           </div>
