@@ -111,9 +111,9 @@ export default function ClusterDetails() {
             { label: "Intellectual-Mongoose", path: `/clusters/${id}` },
           ]}
         />
-        <main className="p-4">
+        <main className="p-4 pl-8">
           <div className="mb-6">
-            <h1 className="text-xl font-medium text-gray-800">
+            <h1 className="text-xl font-bold text-gray-800">
               Intellectual-Mongoose
             </h1>
           </div>

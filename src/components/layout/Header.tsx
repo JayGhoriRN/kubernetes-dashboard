@@ -27,8 +27,8 @@ export default function Header({
   return (
     <header className="flex flex-col justify-between items-center pt-3 border-b border-gray-200 bg-white">
       <div className="flex justify-between w-full px-4">
-        <div className="flex flex-col">
-          <h1 className="text-lg font-medium">Kafka Fleet Manager</h1>
+        <div className="flex flex-col pl-4">
+          <h2 className="text-lg font-medium">Kafka Fleet Manager</h2>
           <span className="text-xs text-gray-500 self-end ">
             by Platformatory
           </span>
@@ -73,7 +73,7 @@ export default function Header({
         </div>
       </div>
       {breadcrumbs && breadcrumbs.length > 0 && (
-        <div className="flex items-center text-sm mt-1 ml-2 p-2 border border-solid border-gray-300 w-full rounded-sm">
+        <div className="flex items-center text-sm mt-1 ml-2 p-2 border border-solid border-gray-300 w-full rounded-sm pl-4">
           <Link to="/" className="text-blue-500 hover:text-blue-700 text-xs">
             Home
           </Link>

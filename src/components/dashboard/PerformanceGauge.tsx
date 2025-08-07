@@ -78,7 +78,9 @@ export default function PerformanceGauge({
   return (
     <Card>
       <CardHeader className="flex flex-row items-center !px-4 !pt-3 !pb-0">
-        <CardTitle className="text-sm font-medium">{title}</CardTitle>
+        <CardTitle className="text-sm font-medium text-gray-500">
+          {title}
+        </CardTitle>
       </CardHeader>
       <CardContent className="pt-0 text-center">
         <div className="relative h-full">
