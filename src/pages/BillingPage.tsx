@@ -16,6 +16,17 @@ import Sidebar from "@/components/layout/Sidebar";
 export default function BillingPage() {
   const [startDate, setStartDate] = useState("Jun 1, 2025");
   const [endDate, setEndDate] = useState("Jun 17, 2025");
+  const [expandedServices, setExpandedServices] = useState<string[]>([
+    "clie-alive-unicorn",
+  ]);
+
+  const toggleService = (serviceId: string) => {
+    setExpandedServices((prev) =>
+      prev.includes(serviceId)
+        ? prev.filter((id) => id !== serviceId)
+        : [...prev, serviceId]
+    );
+  };
 
   const billingData = [
     {
@@ -166,10 +177,11 @@ export default function BillingPage() {
                 <TableBody>
                   {billingData.map((service, index) => (
                     <React.Fragment key={service.id}>
-                      <TableRow className="bg-gray-50 hover:bg-gray-100">
+                      <TableRow className="bg-gray-50 hover:bg-gray-100 cursor-pointer">
                         <TableCell
                           colSpan={3}
                           className="font-medium flex items-center"
+                          onClick={() => toggleService(service.id)}
                         >
                           <button className="mr-2">
                             <svg
@@ -182,46 +194,50 @@ export default function BillingPage() {
                               strokeWidth="2"
                               strokeLinecap="round"
                               strokeLinejoin="round"
+                              className={`transition-transform duration-200 ${
+                                expandedServices.includes(service.id)
+                                  ? "rotate-0"
+                                  : "rotate-180"
+                              }`}
                             >
                               <path d="m18 15-6-6-6 6" />
                             </svg>
                           </button>
                           {service.id}
-                          {index === 0 && (
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="16"
-                              height="16"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              className="ml-2"
-                            >
-                              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
-                              <circle cx="12" cy="12" r="3"></circle>
-                            </svg>
-                          )}
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="ml-2"
+                          >
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                          </svg>
                         </TableCell>
                         <TableCell className="text-right">
                           {service.totalAmount}
                         </TableCell>
                       </TableRow>
-                      {service.items.map((item, itemIndex) => (
-                        <TableRow
-                          key={`${service.id}-${itemIndex}`}
-                          className="bg-white"
-                        >
-                          <TableCell className="pl-10">{item.name}</TableCell>
-                          <TableCell>{item.unitCharge.toFixed(3)}</TableCell>
-                          <TableCell>{item.usage}</TableCell>
-                          <TableCell className="text-right">
-                            {item.amount}
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                      {expandedServices.includes(service.id) &&
+                        service.items.map((item, itemIndex) => (
+                          <TableRow
+                            key={`${service.id}-${itemIndex}`}
+                            className="bg-white"
+                          >
+                            <TableCell className="pl-10">{item.name}</TableCell>
+                            <TableCell>{item.unitCharge.toFixed(3)}</TableCell>
+                            <TableCell>{item.usage}</TableCell>
+                            <TableCell className="text-right">
+                              {item.amount}
+                            </TableCell>
+                          </TableRow>
+                        ))}
                     </React.Fragment>
                   ))}
                 </TableBody>
