@@ -73,12 +73,12 @@ export default function PerformanceGauge({ title, value, maxValue }: Performance
   }, [value, maxValue]);
 
   return (
-    <Card className="flex-1">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+    <Card>
+      <CardHeader className="flex flex-row items-center !px-4 !pt-3 !pb-0">
         <CardTitle className="text-sm font-medium">{title}</CardTitle>
       </CardHeader>
       <CardContent className="pt-0 text-center">
-        <div className="relative h-36">
+        <div className="relative h-full">
           <canvas ref={canvasRef} className="w-full h-full" width="200" height="150"></canvas>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-2xl font-semibold">
             {value}

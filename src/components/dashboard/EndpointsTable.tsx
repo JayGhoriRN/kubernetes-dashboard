@@ -15,7 +15,7 @@ interface EndpointsTableProps {
 
 export default function EndpointsTable({ endpoints }: EndpointsTableProps) {
   return (
-    <Card>
+    <Card className="col-span-2">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400">
@@ -32,7 +32,7 @@ export default function EndpointsTable({ endpoints }: EndpointsTableProps) {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <div className="mb-4">
+        <div className="flex justify-end mb-4">
           <div className="relative">
             <Input placeholder="Search address" className="pl-8" />
             <svg 
