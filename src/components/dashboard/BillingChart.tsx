@@ -95,21 +95,21 @@ export default function BillingChart({ data }: BillingChartProps) {
           </svg>
           Billing
         </CardTitle>
-        <Button variant="ghost" size="icon">
+        {/* <Button variant="ghost" size="icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="1"></circle>
             <circle cx="19" cy="12" r="1"></circle>
             <circle cx="5" cy="12" r="1"></circle>
           </svg>
-        </Button>
+        </Button> */}
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-center mb-2">
           <div className="h-4 w-4 bg-sky-400 rounded-sm mr-2"></div>
           <span className="text-xs text-gray-500">June 2025 Billing (USD)</span>
         </div>
-        <div className="h-40">
-          <canvas ref={canvasRef} width="300" height="160"></canvas>
+        <div className="h-full w-full">
+          <canvas ref={canvasRef} width="400" height="160"></canvas>
         </div>
       </CardContent>
     </Card>
