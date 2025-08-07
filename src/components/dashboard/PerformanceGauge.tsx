@@ -8,14 +8,18 @@ interface PerformanceGaugeProps {
   maxValue: number;
 }
 
-export default function PerformanceGauge({ title, value, maxValue }: PerformanceGaugeProps) {
+export default function PerformanceGauge({
+  title,
+  value,
+  maxValue,
+}: PerformanceGaugeProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     // Clear canvas
@@ -30,7 +34,7 @@ export default function PerformanceGauge({ title, value, maxValue }: Performance
     ctx.beginPath();
     ctx.arc(centerX, centerY, radius, Math.PI, 2 * Math.PI);
     ctx.lineWidth = 2;
-    ctx.strokeStyle = '#e5e7eb';
+    ctx.strokeStyle = "#e5e7eb";
     ctx.stroke();
 
     // Draw gauge ticks
@@ -40,12 +44,12 @@ export default function PerformanceGauge({ title, value, maxValue }: Performance
       const y1 = centerY + (radius - 5) * Math.sin(angle);
       const x2 = centerX + (radius + 5) * Math.cos(angle);
       const y2 = centerY + (radius + 5) * Math.sin(angle);
-      
+
       ctx.beginPath();
       ctx.moveTo(x1, y1);
       ctx.lineTo(x2, y2);
       ctx.lineWidth = i % 5 === 0 ? 2 : 1;
-      ctx.strokeStyle = '#3b82f6';
+      ctx.strokeStyle = "#3b82f6";
       ctx.stroke();
     }
 
@@ -53,7 +57,7 @@ export default function PerformanceGauge({ title, value, maxValue }: Performance
     const numericValue = parseInt(value) || 0;
     const valueRatio = numericValue / maxValue;
     const needleAngle = Math.PI + valueRatio * Math.PI;
-    
+
     ctx.beginPath();
     ctx.moveTo(centerX, centerY);
     ctx.lineTo(
@@ -61,15 +65,14 @@ export default function PerformanceGauge({ title, value, maxValue }: Performance
       centerY + radius * 0.8 * Math.sin(needleAngle)
     );
     ctx.lineWidth = 3;
-    ctx.strokeStyle = '#1f2937';
+    ctx.strokeStyle = "#1f2937";
     ctx.stroke();
 
     // Draw center circle
     ctx.beginPath();
     ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
-    ctx.fillStyle = '#1f2937';
+    ctx.fillStyle = "#1f2937";
     ctx.fill();
-
   }, [value, maxValue]);
 
   return (
@@ -79,7 +82,12 @@ export default function PerformanceGauge({ title, value, maxValue }: Performance
       </CardHeader>
       <CardContent className="pt-0 text-center">
         <div className="relative h-full">
-          <canvas ref={canvasRef} className="w-full h-full" width="200" height="150"></canvas>
+          <canvas
+            ref={canvasRef}
+            className="w-full h-full"
+            width="200"
+            height="150"
+          ></canvas>
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/4 text-2xl font-semibold">
             {value}
           </div>

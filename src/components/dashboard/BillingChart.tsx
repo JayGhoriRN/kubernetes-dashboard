@@ -16,78 +16,88 @@ export default function BillingChart({ data }: BillingChartProps) {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     // Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    const maxAmount = Math.max(...data.map(item => item.amount));
+    const maxAmount = Math.max(...data.map((item) => item.amount));
     const paddingBottom = 25; // Space for labels
     const paddingLeft = 30; // Space for y-axis labels
     const barWidth = 40;
     const barSpacing = 20;
     const chartHeight = canvas.height - paddingBottom;
     const chartWidth = canvas.width - paddingLeft;
-    
+
     // Draw y-axis
     ctx.beginPath();
     ctx.moveTo(paddingLeft, 0);
     ctx.lineTo(paddingLeft, chartHeight);
-    ctx.strokeStyle = '#e5e7eb';
+    ctx.strokeStyle = "#e5e7eb";
     ctx.stroke();
-    
+
     // Draw x-axis
     ctx.beginPath();
     ctx.moveTo(paddingLeft, chartHeight);
     ctx.lineTo(canvas.width, chartHeight);
-    ctx.strokeStyle = '#e5e7eb';
+    ctx.strokeStyle = "#e5e7eb";
     ctx.stroke();
-    
+
     // Draw y-axis labels and horizontal grid lines
     const ySteps = 4;
     for (let i = 0; i <= ySteps; i++) {
-      const y = chartHeight - (i * (chartHeight / ySteps));
-      const value = (i * maxAmount / ySteps).toFixed(1);
-      
+      const y = chartHeight - i * (chartHeight / ySteps);
+      const value = ((i * maxAmount) / ySteps).toFixed(1);
+
       // Grid line
       ctx.beginPath();
       ctx.moveTo(paddingLeft, y);
       ctx.lineTo(canvas.width, y);
-      ctx.strokeStyle = '#f3f4f6';
+      ctx.strokeStyle = "#f3f4f6";
       ctx.stroke();
-      
+
       // Y-axis label
-      ctx.fillStyle = '#6b7280';
-      ctx.font = '10px sans-serif';
-      ctx.textAlign = 'right';
+      ctx.fillStyle = "#6b7280";
+      ctx.font = "10px sans-serif";
+      ctx.textAlign = "right";
       ctx.fillText(value, paddingLeft - 5, y + 3);
     }
-    
+
     // Draw bars
     data.forEach((item, index) => {
-      const x = paddingLeft + (index * (barWidth + barSpacing)) + barSpacing;
+      const x = paddingLeft + index * (barWidth + barSpacing) + barSpacing;
       const barHeight = (item.amount / maxAmount) * chartHeight;
       const y = chartHeight - barHeight;
-      
+
       // Bar
-      ctx.fillStyle = '#38bdf8';
+      ctx.fillStyle = "#38bdf8";
       ctx.fillRect(x, y, barWidth, barHeight);
-      
+
       // X-axis label
-      ctx.fillStyle = '#6b7280';
-      ctx.font = '10px sans-serif';
-      ctx.textAlign = 'center';
+      ctx.fillStyle = "#6b7280";
+      ctx.font = "10px sans-serif";
+      ctx.textAlign = "center";
       ctx.fillText(item.month, x + barWidth / 2, chartHeight + 15);
     });
-
   }, [data]);
 
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium flex items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-2 text-blue-400">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="mr-2 text-blue-400"
+          >
             <path d="M2 17a5 5 0 0 0 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z"></path>
             <path d="M12 17a5 5 0 0 0 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z"></path>
             <path d="M2 7a5 5 0 0 1 10 0c0-2.76-2.5-5-5-3-2.5-2-5 .24-5 3Z"></path>
