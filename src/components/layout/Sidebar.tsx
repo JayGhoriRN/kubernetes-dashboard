@@ -54,6 +54,12 @@ const bottomIcons = [
     label: "Terminal",
   },
   {
+    id: "billing",
+    path: "/billing",
+    icon: <BillingIcon />,
+    label: "Billing",
+  },
+  {
     id: "profile",
     path: "/profile",
     icon: <ProfileIcon />,
@@ -73,10 +79,10 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-16 bg-white border-r border-gray-200 flex flex-col h-screen fixed left-0 top-0 z-50">
+    <div className="w-16 bg-white border-r border-gray-200 flex flex-col h-screen fixed left-0 top-0 z-50 shadow-sm">
       {/* Logo/Brand section */}
       <div className="flex items-center justify-center py-4 border-b border-gray-200">
-        <div className="w-8 h-8 bg-blue-500 rounded-md flex items-center justify-center">
+        <div className="w-8 h-8 bg-blue-500 rounded flex items-center justify-center">
           <svg
             width="16"
             height="16"
@@ -93,7 +99,7 @@ export default function Sidebar() {
       </div>
 
       {/* Main navigation */}
-      <div className="flex-1 flex flex-col items-center py-4 space-y-2">
+      <div className="flex-1 flex flex-col items-center py-3 space-y-1">
         {sidebarIcons.map((item) => {
           const isActive = isActiveRoute(item.path);
 
@@ -102,22 +108,17 @@ export default function Sidebar() {
               key={item.id}
               to={item.path}
               className={cn(
-                "relative w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-200 group",
+                "relative w-12 h-12 rounded flex items-center justify-center transition-all duration-200 group",
                 isActive
-                  ? "bg-blue-50 text-blue-600 shadow-sm"
-                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  ? "bg-blue-500 text-white shadow-md"
+                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
               )}
               title={item.label}
             >
-              {/* Active indicator */}
-              {isActive && (
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-blue-600 rounded-r-full" />
-              )}
-
               <div
                 className={cn(
-                  "transition-transform duration-200",
-                  isActive ? "scale-110" : "group-hover:scale-105"
+                  "transition-all duration-200",
+                  isActive ? "scale-100" : "group-hover:scale-105"
                 )}
               >
                 {item.icon}
@@ -128,7 +129,7 @@ export default function Sidebar() {
       </div>
 
       {/* Bottom navigation */}
-      <div className="flex flex-col items-center py-4 space-y-2 border-t border-gray-200">
+      <div className="flex flex-col items-center py-3 space-y-1 border-t border-gray-200">
         {bottomIcons.map((item) => {
           const isActive = isActiveRoute(item.path);
 
@@ -137,22 +138,17 @@ export default function Sidebar() {
               key={item.id}
               to={item.path}
               className={cn(
-                "relative w-12 h-12 rounded-lg flex items-center justify-center transition-all duration-200 group",
+                "relative w-12 h-12 rounded flex items-center justify-center transition-all duration-200 group",
                 isActive
-                  ? "bg-blue-50 text-blue-600 shadow-sm"
-                  : "text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                  ? "bg-blue-500 text-white shadow-md"
+                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
               )}
               title={item.label}
             >
-              {/* Active indicator */}
-              {isActive && (
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-blue-600 rounded-r-full" />
-              )}
-
               <div
                 className={cn(
-                  "transition-transform duration-200",
-                  isActive ? "scale-110" : "group-hover:scale-105"
+                  "transition-all duration-200",
+                  isActive ? "scale-100" : "group-hover:scale-105"
                 )}
               >
                 {item.icon}
@@ -165,13 +161,13 @@ export default function Sidebar() {
   );
 }
 
-// Icon components with proper sizing
+// Updated icon components with consistent styling
 function HomeIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -189,8 +185,8 @@ function ClustersIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -213,8 +209,8 @@ function InfrastructureIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -233,8 +229,8 @@ function MonitoringIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -251,8 +247,8 @@ function MetricsIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -270,8 +266,8 @@ function ActivityIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -290,8 +286,8 @@ function SettingsIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -309,8 +305,8 @@ function TerminalIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -328,8 +324,8 @@ function ProfileIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -340,6 +336,25 @@ function ProfileIcon() {
       <circle cx="12" cy="12" r="10"></circle>
       <circle cx="12" cy="10" r="3"></circle>
       <path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662"></path>
+    </svg>
+  );
+}
+
+function BillingIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+      <line x1="2" y1="10" x2="22" y2="10"></line>
     </svg>
   );
 }
