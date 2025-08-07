@@ -19,25 +19,13 @@ export default function Header({
   breadcrumbs = []
 }: HeaderProps) {
   return (
-    <header className="flex justify-between items-center py-3 px-4 border-b border-gray-200 bg-white">
-      <div>
-        <div className="flex items-center">
+    <header className="flex flex-col justify-between items-center pt-3 border-b border-gray-200 bg-white">
+      <div className="flex justify-between w-full px-4">
+        <div className="flex flex-col">
           <h1 className="text-lg font-medium">Kafka Fleet Manager</h1>
-          <span className="text-xs text-gray-500 ml-2">by Platformatory</span>
+          <span className="text-xs text-gray-500 self-end ">by Platformatory</span>
         </div>
-        {breadcrumbs && breadcrumbs.length > 0 && (
-          <div className="flex items-center text-sm mt-2">
-            <Link to="/" className="text-gray-500 hover:text-gray-700">Home</Link>
-            {breadcrumbs.map((item, i) => (
-              <div key={i} className="flex items-center">
-                <span className="mx-2 text-gray-400">›</span>
-                <Link to={item.path} className="text-gray-500 hover:text-gray-700">{item.label}</Link>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
         {showOrgDropdown && (
           <div className="flex flex-col">
             <span className="text-xs text-gray-500">Organization</span>
@@ -59,7 +47,20 @@ export default function Header({
             <circle cx="12" cy="7" r="4"></circle>
           </svg>
         </Button>
+        </div>
       </div>
+        {breadcrumbs && breadcrumbs.length > 0 && (
+          <div className="flex items-center text-sm mt-2 ml-2 p-2 border border-solid border-gray-400 w-full">
+            <Link to="/" className="text-blue-500 hover:text-gray-700">Home</Link>
+            {breadcrumbs.map((item, i) => (
+              <div key={i} className="flex items-center justify-center">
+                <span className="mx-2 text-blue-400 text-2xl">›</span>
+                <Link to={item.path} className="text-blue-500 hover:text-gray-700">{item.label}</Link>
+              </div>
+            ))}
+          </div>
+        )}
+      
     </header>
   );
 }
